@@ -1,10 +1,14 @@
-export interface FetchResultOK {
+export interface FetchResult_OK {
     status:       string;
     copyright:    string;
     section:      string;
     last_updated: Date;
     num_results:  number;
     results:      Article[];
+}
+
+export interface FetchResult_NotOK {
+    error: string;
 }
 
 export interface Article {
@@ -17,8 +21,8 @@ export interface Article {
     byline:              string;
     item_type:           ItemType;
     updated_date:        Date;
-    created_date:        Date;
-    published_date:      Date;
+    created_date:        Date | string;
+    published_date:      Date | string;
     material_type_facet: string;
     kicker:              string;
     des_facet:           string[];
