@@ -38,6 +38,7 @@ function App() {
     <>
       <h1>The New York Times – Top Stories</h1>
       <div>
+      
         {articles.map((article) => {
 
           return <ArticleCard article={article} key={article.abstract}/>
