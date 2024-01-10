@@ -22,11 +22,17 @@ export default function ArticleCard({ article }: Props) {
     <Card>
         <h2>{article.title}</h2>
         <p>{article.abstract}</p>
-        {/* <AuthorNames>{article.byline}</AuthorNames> */}
-        <img src={article.multimedia[1].url} alt={article.multimedia[1].caption} />
+        <AuthorNames>{article.byline}</AuthorNames>
+
+        {/* Überprüfung, ob article.multimedia (sprich ein Bild) enthalten ist und das Array mindestens 1 Element enthält. 
+        Rendering vom Bild erfolgt nur, wenn article.multimedia existiert und mindestens 1 Element enthält. Wenn kein Bild 
+        existiert, wird nur der übrige Text ohne Bild gerendert*/}
+        {article.multimedia && article.multimedia.length >= 0 && (
+        <img src={article.multimedia[1].url} alt={article.multimedia[1].caption} />)}
+
         <p>Published on: {publishedDate}</p>
-        {/* <p>Section: {article.section}</p>
-        <p>Subsection: {article.subsection}</p> */}
+        <p>Section: {article.section}</p>
+        {/* <p>Subsection: {article.subsection}</p> */}
     </Card>
   )
 }

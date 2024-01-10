@@ -3,7 +3,12 @@ import { useState, useEffect } from 'react';
 import { Article, FetchResult_NotOK, FetchResult_OK } from './@types/home';
 import ArticleCard from './components/ArticleCard';
 
-function App() {
+
+const apiUrl = "https://api.nytimes.com/svc/topstories/v2/home.json"
+const apiKey = "DIkDkEWNFPZShAystpYlAsOhHdC9w7nL"
+
+
+export default function App() {
 
   const [articles, setArticles] = useState<Article[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -11,7 +16,8 @@ function App() {
   async function fetchData() {
 
     try {
-      const response = await fetch("https://api.nytimes.com/svc/topstories/v2/home.json?api-key=DIkDkEWNFPZShAystpYlAsOhHdC9w7nL");
+
+      const response = await fetch(`${apiUrl}?api-key=${apiKey}`);
 
       if (response.ok) {
         const result = await response.json() as FetchResult_OK;
@@ -38,7 +44,7 @@ function App() {
     <>
       <h1>The New York Times – Top Stories</h1>
       <div>
-      
+
         {articles.map((article) => {
 
           return <ArticleCard article={article} key={article.abstract}/>
@@ -49,4 +55,4 @@ function App() {
   )
 }
 
-export default App
+
