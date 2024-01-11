@@ -2,7 +2,7 @@ import '../App.css';
 import { useState, useEffect } from 'react';
 import { Article, FetchResult_NotOK, FetchResult_OK } from '../@types/home';
 import ArticleCard from '../components/ArticleCard';
-import NavBar from '../components/NavBar';
+
 
 const apiUrl = "https://api.nytimes.com/svc/topstories/v2/home.json"
 const apiKey = import.meta.env.VITE_API_KEY
@@ -44,17 +44,16 @@ export default function Homepage() {
 
   return (
     <>
-      <NavBar />
-      <h1>The New York Times – Top Stories</h1>
-      <div>
+          <h1>The New York Times – Top Stories</h1>
+          <div>
 
-        {articles.map((article) => {
+            {articles.map((article) => {
 
-          return <ArticleCard article={article} key={article.abstract}/>
-        }) }
+              return <ArticleCard article={article} key={article.abstract}/>
+            }) }
 
-      </div>
-    </>
+          </div>
+     </>
   )
 }
 

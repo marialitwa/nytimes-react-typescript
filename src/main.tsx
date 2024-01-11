@@ -1,22 +1,32 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './index.css'
 import Homepage from './pages/Homepage.tsx'
 import Story from './pages/Story.tsx'
 import Error404 from './pages/Error404.tsx'
+import Layout from './components/Layout.tsx'
 
 const router = createBrowserRouter([
 
-  {
-    path: "/",
-    element: <Homepage />
-  },
 
   {
-    path: "/story",
-    element: <Story />
+    element: <Layout><Outlet/></Layout>,
+    children: [
+
+      {
+        path: "/",
+        element: <Homepage />
+      },
+    
+      {
+        path: "/story",
+        element: <Story />
+      }
+
+    ]
   },
+
   {
     path: "*",
     element: <Error404 />
