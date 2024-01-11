@@ -22,7 +22,7 @@ export default function ArticleCard({ article }: Props) {
     <Card>
         <h2>{article.title}</h2>
         <p>{article.abstract}</p>
-        <AuthorNames>{article.byline}</AuthorNames>
+        {/* <AuthorNames>{article.byline}</AuthorNames> */}
 
         {/* Überprüfung, ob article.multimedia (sprich ein Bild) enthalten ist und das Array mindestens 1 Element enthält. 
         Rendering vom Bild erfolgt nur, wenn article.multimedia existiert und mindestens 1 Element enthält. Wenn kein Bild 
@@ -32,7 +32,7 @@ export default function ArticleCard({ article }: Props) {
 
         <p>Published on: {publishedDate}</p>
         <p>Section: {article.section}</p>
-        {/* <p>Subsection: {article.subsection}</p> */}
+        <button>Read more</button>
     </Card>
   )
 }
@@ -48,6 +48,6 @@ const Card = styled.div`
     _text-align:left;
 `;
 
-const AuthorNames = styled.h3`
-    margin-bottom: 1.5em;
-`;
+// const AuthorNames = styled.h3`
+//     margin-bottom: 1.5em;
+// `;

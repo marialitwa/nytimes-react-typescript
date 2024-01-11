@@ -4,8 +4,11 @@ import { Article, FetchResult_NotOK, FetchResult_OK } from './@types/home';
 import ArticleCard from './components/ArticleCard';
 
 
+
 const apiUrl = "https://api.nytimes.com/svc/topstories/v2/home.json"
-const apiKey = "DIkDkEWNFPZShAystpYlAsOhHdC9w7nL"
+const apiKey = import.meta.env.VITE_API_KEY
+
+
 
 
 export default function App() {
@@ -33,6 +36,8 @@ export default function App() {
 
     catch(error) {
       console.error("An error occured", error);
+      const {message} = error as Error;
+      setError(message)
     }
   }
 
