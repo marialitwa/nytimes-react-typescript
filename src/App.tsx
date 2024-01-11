@@ -3,13 +3,9 @@ import { useState, useEffect } from 'react';
 import { Article, FetchResult_NotOK, FetchResult_OK } from './@types/home';
 import ArticleCard from './components/ArticleCard';
 
-
-
 const apiUrl = "https://api.nytimes.com/svc/topstories/v2/home.json"
 const apiKey = import.meta.env.VITE_API_KEY
-
-
-
+// Check Vite Docs: environmental variables
 
 export default function App() {
 
