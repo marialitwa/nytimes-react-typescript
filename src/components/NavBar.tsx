@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 interface LinkProps {
     isActive: boolean;
@@ -11,11 +11,14 @@ export default function NavBar() {
     const location = useLocation();
     // console.log(location)
 
+    const navigation = useNavigate();
+
     return (
         <>
             <Navigation>
                 <LinkStyled to={"/"} isActive={location.pathname === "/"}>Home</LinkStyled>
                 <LinkStyled to={"/story"} isActive={location.pathname === "/story"}>Story</LinkStyled>
+                <button onClick={() => navigation(-1)}>Back</button>
             </Navigation>
         
         </>
@@ -34,13 +37,14 @@ const Navigation = styled.nav`
     padding: 0 1em;
     width: 100%;
     height: 50px;
-    border: 1px solid hotpink;
+    background-color: #f5f5f5;
     
 `;
 
 const LinkStyled = styled(Link)<LinkProps>`
 
     ${({ isActive }) => isActive && css`
+        _color: #18171a;
         color: hotpink;
         text-decoration: none;
         font-weight: bold;

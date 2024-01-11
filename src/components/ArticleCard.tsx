@@ -41,10 +41,9 @@ export default function ArticleCard({ article }: Props) {
 // STYLING
 
 const Card = styled.div`
-    border: 1px solid black;
+    border: 3px solid #18171A;
     padding: 2em;
-    margin: 3em;
-    _text-align:left;
+    margin: 5em;
 `;
 
 // const AuthorNames = styled.h3`
