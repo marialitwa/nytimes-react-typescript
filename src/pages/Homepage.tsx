@@ -1,13 +1,14 @@
-import './App.css';
+import '../App.css';
 import { useState, useEffect } from 'react';
-import { Article, FetchResult_NotOK, FetchResult_OK } from './@types/home';
-import ArticleCard from './components/ArticleCard';
+import { Article, FetchResult_NotOK, FetchResult_OK } from '../@types/home';
+import ArticleCard from '../components/ArticleCard';
+import NavBar from '../components/NavBar';
 
 const apiUrl = "https://api.nytimes.com/svc/topstories/v2/home.json"
 const apiKey = import.meta.env.VITE_API_KEY
 // Check Vite Docs: environmental variables
 
-export default function App() {
+export default function Homepage() {
 
   const [articles, setArticles] = useState<Article[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -19,14 +20,14 @@ export default function App() {
       const response = await fetch(`${apiUrl}?api-key=${apiKey}`);
 
       if (response.ok) {
-        const result = await response.json() as FetchResult_OK;
-        console.log(result)
-        setArticles(result.results)
+        const data = await response.json() as FetchResult_OK;
+        console.log(data)
+        setArticles(data.results)
 
       } else {
-        const result = await response.json() as FetchResult_NotOK;
-        console.log(result);
-        setError(result.error)
+        const data = await response.json() as FetchResult_NotOK;
+        console.log(data);
+        setError(data.error)
       }
     }
 
@@ -43,6 +44,7 @@ export default function App() {
 
   return (
     <>
+      <NavBar />
       <h1>The New York Times – Top Stories</h1>
       <div>
 

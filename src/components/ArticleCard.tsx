@@ -38,7 +38,6 @@ export default function ArticleCard({ article }: Props) {
 }
 
 
-
 // STYLING
 
 const Card = styled.div`
