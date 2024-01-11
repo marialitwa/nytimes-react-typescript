@@ -1,14 +1,21 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
+import { Link, useLocation } from "react-router-dom";
+
+interface LinkProps {
+    isActive: boolean;
+}
 
 
 export default function NavBar() {
 
+    const location = useLocation();
+    // console.log(location)
+
     return (
         <>
             <Navigation>
-                <Link to={"/"}>Home</Link>
-                <Link to={"/story"}>Story</Link>
+                <LinkStyled to={"/"} isActive={location.pathname === "/"}>Home</LinkStyled>
+                <LinkStyled to={"/story"} isActive={location.pathname === "/story"}>Story</LinkStyled>
             </Navigation>
         
         </>
@@ -29,4 +36,19 @@ const Navigation = styled.nav`
     height: 50px;
     border: 1px solid hotpink;
     
+`;
+
+const LinkStyled = styled(Link)<LinkProps>`
+
+    ${({ isActive }) => isActive && css`
+        color: hotpink;
+        text-decoration: none;
+        font-weight: bold;
+    `}
+
+    ${({ isActive }) => !isActive && css`
+        color: grey;
+        text-decoration: none;
+    `}
+
 `;
