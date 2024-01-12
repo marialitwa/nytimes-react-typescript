@@ -1,5 +1,5 @@
 // import React from 'react'
-import { Article } from '../@types/home'
+import { Article } from '../@types'
 import styled from "styled-components";
 
 type Props = {

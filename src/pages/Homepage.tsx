@@ -1,6 +1,6 @@
 import '../App.css';
 import { useState, useEffect } from 'react';
-import { Article, FetchResult_NotOK, FetchResult_OK } from '../@types/home';
+import { Article, FetchResult_NotOK, FetchResult_OK } from '../@types';
 import ArticleCard from '../components/ArticleCard';
 
 
