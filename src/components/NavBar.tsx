@@ -45,7 +45,6 @@ const Navigation = styled.nav`
 const LinkStyled = styled(Link)<LinkProps>`
 
     ${({ isActive }) => isActive && css`
-        _color: #18171a;
         color: hotpink;
         text-decoration: none;
         font-weight: bold;

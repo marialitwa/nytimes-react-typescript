@@ -2,7 +2,7 @@ import '../App.css';
 import { useState, useEffect } from 'react';
 import { Article_TopStories, FetchResult_NotOK, FetchResult_OK } from '../@types/topstories';
 import ArticleCard from '../components/ArticleCard';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 
 const apiUrl = "https://api.nytimes.com/svc/topstories/v2/home.json"
@@ -29,8 +29,8 @@ export default function ArticlesPage() {
 
       } else {
         const data = await response.json() as FetchResult_NotOK;
-        // console.log(data);
-        setError(data.error)
+        setError(data.error);
+        console.log(error);
       }
     }
 
@@ -43,6 +43,7 @@ export default function ArticlesPage() {
 
   useEffect(() => {
     fetchData().catch((error) => console.error(error))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [articles])
 
 
