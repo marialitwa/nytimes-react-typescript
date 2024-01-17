@@ -4,14 +4,14 @@ export interface FetchResult_OK {
     section:      string;
     last_updated: Date;
     num_results:  number;
-    results:      Article[];
+    results:      Article_TopStories[];
 }
 
 export interface FetchResult_NotOK {
     error: string;
 }
 
-export interface Article {
+export interface Article_TopStories {
     section:             string;
     subsection:          Subsection;
     title:               string;

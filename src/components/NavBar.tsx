@@ -17,7 +17,8 @@ export default function NavBar() {
         <>
             <Navigation>
                 <LinkStyled to={"/"} isActive={location.pathname === "/"}>Home</LinkStyled>
-                <LinkStyled to={"/story"} isActive={location.pathname === "/story"}>Story</LinkStyled>
+                <LinkStyled to={"/articles"} isActive={location.pathname === "/articles"}>Articles</LinkStyled>
+                {/* <LinkStyled to={"/article/:id"} isActive={location.pathname === "/article/:id"}>Article Details</LinkStyled> */}
                 <button onClick={() => navigation(-1)}>Back</button>
             </Navigation>
         
@@ -44,7 +45,6 @@ const Navigation = styled.nav`
 const LinkStyled = styled(Link)<LinkProps>`
 
     ${({ isActive }) => isActive && css`
-        _color: #18171a;
         color: hotpink;
         text-decoration: none;
         font-weight: bold;
@@ -56,3 +56,4 @@ const LinkStyled = styled(Link)<LinkProps>`
     `}
 
 `;
+
