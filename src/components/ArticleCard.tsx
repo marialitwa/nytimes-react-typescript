@@ -2,6 +2,8 @@
 import { useNavigate } from 'react-router-dom';
 import { Article_TopStories } from '../@types/topstories'
 import styled from "styled-components";
+import { AuthContext } from '../context/AuthContext';
+import { useContext } from 'react';
 
 type Props = {
     article: Article_TopStories;
@@ -9,6 +11,7 @@ type Props = {
 
 export default function ArticleCard({ article }: Props) {
 
+  const { user } = useContext(AuthContext);
 
   const publishedDate = new Date(article.published_date)
     
@@ -33,18 +36,16 @@ export default function ArticleCard({ article }: Props) {
         </div>
 
         <div>
-          {/* Überprüfung, ob article.multimedia (sprich ein Bild) enthalten ist und das Array mindestens 1 Element enthält. 
-          Rendering vom Bild erfolgt nur, wenn article.multimedia existiert und mindestens 1 Element enthält. Wenn kein Bild 
+          {/* && Syntax: Überprüfung, ob article.multimedia (sprich ein Bild) enthalten ist und das Array mindestens 1 Element enthält. 
+          Rendering vom Bild & Copyright erfolgt nur, wenn article.multimedia existiert und mindestens 1 Element enthält. Wenn kein Bild 
           existiert, wird nur der übrige Text ohne Bild gerendert*/}
+
           {article.multimedia && article.multimedia.length >= 0 && (
-          <img src={article.multimedia[1].url} alt={article.multimedia[1].caption} />)}
-          <p>Photo by {article.multimedia[1].copyright}</p>
-
-
+          <img src={article.multimedia[1].url} alt={article.multimedia[1].caption} /> )}
+          { article.multimedia && article.multimedia.length >= 0 && <p>Photo by {article.multimedia[1].copyright}</p> }
         </div>
-          <button onClick={() => navigate(`/article/${article.uri.slice(14)}/${article.item_type.toLowerCase()}`, {state:{title: article.title}})}>Read more</button>
+          { user ? <button onClick={() => navigate(`/article/${article.uri.slice(14)}/${article.item_type.toLowerCase()}`, {state:{title: article.title}})}>Read more</button> : <h3>Login to read more</h3>}
           {/* <button onClick={() => console.log("Button clicked")}>Read more</button> */}
-
     </CardWrapper>
     
   )
