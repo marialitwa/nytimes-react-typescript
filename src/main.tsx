@@ -7,12 +7,15 @@ import Error404 from './pages/Error404.tsx'
 import Layout from './components/Layout.tsx'
 import ArticleDetailsPage from './pages/ArticleDetailsPage.tsx'
 import Homepage from './pages/Homepage.tsx'
+import { AuthContextProvider } from './context/AuthContext.tsx'
+import { AuthPage } from './pages/AuthPage.tsx'
+
 
 const router = createBrowserRouter([
 
 
   {
-    element: <Layout><Outlet/></Layout>,
+    element: <AuthContextProvider><Layout><Outlet/></Layout></AuthContextProvider>,
     children: [
 
       {
@@ -24,7 +27,10 @@ const router = createBrowserRouter([
         path: "/articles",
         element: <ArticlesPage />
       },
-    
+      {
+        path: "/auth",
+        element: <AuthPage />
+      },
       {
         path: "/article/:id/:item_type",
         element: <ArticleDetailsPage />
