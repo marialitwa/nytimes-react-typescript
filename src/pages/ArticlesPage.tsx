@@ -6,7 +6,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 
 const apiUrl = "https://api.nytimes.com/svc/topstories/v2/home.json"
-const apiKey_TopStories = import.meta.env.VITE_API_KEY
+const apiKey_TopStories = import.meta.env.VITE_API_KEY_TOPSTORIES
 // Check Vite Docs: environmental variables
 
 export default function ArticlesPage() {

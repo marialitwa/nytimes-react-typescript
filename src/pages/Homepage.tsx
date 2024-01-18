@@ -2,6 +2,7 @@
 
 import { useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
+import { app } from "../firebase"
 
  
 export default function Homepage() {
@@ -10,6 +11,8 @@ export default function Homepage() {
   // Destructering code in comments above
   const { user, login } = useContext(AuthContext)
   console.log(user, login)
+
+  console.log("app", app);
 
   return (
     <div>
