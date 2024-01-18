@@ -7,7 +7,7 @@ type Props = {
     submit: (email: string) => void
 }
 
-function AuthForm( { submitTitle, submit }: Props) {
+export default function AuthForm( { submitTitle, submit }: Props) {
 
     const [email, setEmail] = useState("");
 
@@ -32,4 +32,3 @@ function AuthForm( { submitTitle, submit }: Props) {
   )
 }
 
-export default AuthForm

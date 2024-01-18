@@ -5,7 +5,6 @@ import { AuthContext } from "../context/AuthContext"
 
  
 export default function Homepage() {
-
   // const context = useContext(AuthContext)
   // console.log(context)
   // Destructering code in comments above
