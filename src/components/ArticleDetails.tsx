@@ -29,7 +29,7 @@ export default function ArticleDetails({ article }: Props) {
         <p>Source: {article.source}</p>
         <p>Section: {article.type_of_material}</p>
         <p>Word count: {article.word_count}</p>
-        <LinkStyled to={article.web_url} target="_blank" rel="noopener noreferrer">Read full jarticle here</LinkStyled>
+        <LinkStyled to={article.web_url} target="_blank" rel="noopener noreferrer">Read full article here</LinkStyled>
         {/* Empfehlung: rel Attribut um Sciherehitsprobleme zu vermeiden => rel="noopener noreferrer" */}
     </div>
   )
@@ -40,10 +40,8 @@ export default function ArticleDetails({ article }: Props) {
 
 const LinkStyled = styled(Link)`
 
-  border: 2px solid black;
   padding: 1em;
   font-size: 2rem;  
-
   text-decoration-thickness: 6px;
   text-decoration-color: hotpink;
 

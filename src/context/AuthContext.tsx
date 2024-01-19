@@ -1,7 +1,7 @@
-import { PropsWithChildren, createContext, useState } from "react";
+import { PropsWithChildren, createContext, useEffect, useState } from "react";
 // import { User } from "../@types/user";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, type User } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
 import { auth } from "../firebase";
 
 interface AuthContextType {
@@ -26,7 +26,7 @@ export const AuthContext = createContext(defaultValue);
 export const AuthContextProvider = ( {children}: PropsWithChildren) => {
     const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     // do error state here, when e.g. password characters are less than 6 (Firebase default). 
     // Display it down in error block as message and send through to AuthForm on AuthPage as alert or Toastify something
 
@@ -77,8 +77,35 @@ export const AuthContextProvider = ( {children}: PropsWithChildren) => {
     }
 
     const logout = () => {
-        setUser(null)
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            setUser(null);
+          }).catch((error) => {
+            // An error happened.
+            console.log("An error ocurred. Signout failed.", error)
+          });
+        
     }
+
+    useEffect(() => {
+        const getActiveUser = () => {
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  // User is signed in, see docs for a list of available properties
+                  // https://firebase.google.com/docs/reference/js/auth.user
+                // const uid = user.uid;
+                  setUser(user);
+                } else {
+                  // User is signed out
+                  setUser(null);
+                }
+                setLoading(false);
+              });
+        }
+        getActiveUser();
+
+    }, [])
 
     return (
         <AuthContext.Provider value={{ user, login, logout, signup, loading }}>
