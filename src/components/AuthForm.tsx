@@ -1,5 +1,3 @@
-// import React from 'react'
-
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
@@ -24,7 +22,7 @@ export default function AuthForm( { submitTitle, submit }: Props) {
       console.log("submitting")
       submit(email, password);
     }}>
-
+      
         <input 
             type="email"
             placeholder="Email"
@@ -41,8 +39,6 @@ export default function AuthForm( { submitTitle, submit }: Props) {
             required
             />    
         <button type="submit">{loading ? "Loading ..." : submitTitle}</button>    
-
-
     </form>
   )
 }
