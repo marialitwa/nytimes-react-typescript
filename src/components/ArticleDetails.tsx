@@ -3,40 +3,43 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 type Props = {
-    article: Article_ArticleSearch,
-}
+  article: Article_ArticleSearch;
+};
 
 export default function ArticleDetails({ article }: Props) {
-
   return (
     <div>
       <h2>{article.headline.main}</h2>
       <h3>{article.byline.original}</h3>
       <p>{article.lead_paragraph}</p>
       <p>{article.abstract}</p>
-      
-      {article.multimedia && article.multimedia.length >= 0 && (
-        <img 
-        src={`https://static01.nyt.com/${article.multimedia[0].url}`} 
-        alt={article.snippet} />
-      )
-        }
-        <p>Source: {article.source}</p>
-        <p>Section: {article.type_of_material}</p>
-        <p>Word count: {article.word_count}</p>
-        <LinkStyled to={article.web_url} target="_blank" rel="noopener noreferrer">Read full article here</LinkStyled>
-        {/* Empfehlung: rel Attribut um Sicherheitsprobleme zu vermeiden => rel="noopener noreferrer" */}
-    </div>
-  )
-}
 
+      {article.multimedia && article.multimedia.length >= 0 && (
+        <img
+          src={`https://static01.nyt.com/${article.multimedia[0].url}`}
+          alt={article.snippet}
+        />
+      )}
+      <p>Source: {article.source}</p>
+      <p>Section: {article.type_of_material}</p>
+      <p>Word count: {article.word_count}</p>
+      <LinkStyled
+        to={article.web_url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Read full article here
+      </LinkStyled>
+      {/* Empfehlung: rel Attribut um Sicherheitsprobleme zu vermeiden => rel="noopener noreferrer" */}
+    </div>
+  );
+}
 
 // STYLING
 
 const LinkStyled = styled(Link)`
-
   padding: 1em;
-  font-size: 2rem;  
+  font-size: 2rem;
   text-decoration-thickness: 6px;
   text-decoration-color: hotpink;
 
@@ -58,8 +61,4 @@ const LinkStyled = styled(Link)`
   // //     color: lime;
   // //     text-decoration-color: blue;
   // //   }
-
 `;
-
-
-
