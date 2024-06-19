@@ -1,4 +1,16 @@
-// import React from 'react'
+import "../App.css";
+import { useState, useEffect } from "react";
+import {
+  Article_TopStories,
+  FetchResult_NotOK,
+  FetchResult_OK,
+} from "../@types/topstories";
+import ArticleCard from "../components/ArticleCard";
+import { Outlet, useLocation } from "react-router-dom";
+
+const apiUrl = "https://api.nytimes.com/svc/topstories/v2/home.json";
+const apiKey_TopStories = import.meta.env.VITE_API_KEY_TOPSTORIES;
+// Check Vite Docs: environmental variables
 
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -11,13 +23,46 @@ export default function Homepage() {
   const { user, login } = useContext(AuthContext);
   console.log(user, login);
 
-  // console.log("app", app);
-  // console.log("auth", auth);
+  const location = useLocation();
+
+  const [articles, setArticles] = useState<Article_TopStories[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  async function fetchData() {
+    try {
+      const response = await fetch(`${apiUrl}?api-key=${apiKey_TopStories}`);
+
+      if (response.ok) {
+        const data = (await response.json()) as FetchResult_OK;
+        // console.log(data)
+        setArticles(data.results);
+      } else {
+        const data = (await response.json()) as FetchResult_NotOK;
+        setError(data.error);
+        console.log(error);
+      }
+    } catch (error) {
+      console.error("An error occured", error);
+      const { message } = error as Error;
+      setError(message);
+    }
+  }
+
+  useEffect(() => {
+    fetchData().catch((error) => console.error(error));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [articles]);
+
+  if (location.pathname !== "/") return <Outlet />;
 
   return (
-    <div>
-      <h1>This is the Homepage</h1>
-      <h2>The New York Times Top Stories</h2>
-    </div>
+    <>
+      <h1>The New York Times – Top Stories</h1>
+      <div>
+        {articles.map((article) => {
+          return <ArticleCard key={article.uri} article={article} />;
+        })}
+      </div>
+    </>
   );
 }
