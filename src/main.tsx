@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
-import ArticlesPage from "./pages/ArticlesPage.tsx";
+// import ArticlesPage from "./pages/ArticlesPage.tsx";
 import Error404 from "./pages/Error404.tsx";
 import Layout from "./components/Layout.tsx";
 import ArticleDetailsPage from "./pages/ArticleDetailsPage.tsx";
@@ -24,15 +24,6 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
-      },
-
-      {
-        path: "/articles",
-        element: <ArticlesPage />,
-        // children: [{
-        //   path: "/article/:id/:item_type",
-        //   element: <ProtectedRoute><ArticleDetailsPage /></ProtectedRoute>
-        // }]
       },
       {
         path: "/article/:id/:item_type",

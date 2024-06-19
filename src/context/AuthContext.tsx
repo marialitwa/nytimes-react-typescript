@@ -58,7 +58,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         // console.log(user)
         setUser(user);
         setLoading(false);
-        navigate("/articles", { replace: true });
+        navigate("/", { replace: true });
         // with replace true (which is a navigate option) the user can't go back to login page
         // means: when the user clicks the back button in the browser the user gets back to the page
         // where the user was before the login page
@@ -82,7 +82,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         console.log(user);
         setUser(user);
         setLoading(false);
-        navigate("/articles", { replace: true });
+        navigate("/", { replace: true });
       })
       .catch((error) => {
         const { message } = error as Error;
